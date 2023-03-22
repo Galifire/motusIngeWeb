@@ -1,0 +1,151 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    text-align: justify;
+    background-image: url(https://pbs.twimg.com/media/FjnSB0cXgAAJXqm?format=jpg&name=medium);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rgb(230, 230, 230);
+}
+
+.nav{
+    border-width:1px 0;
+    list-style:none;
+    list-style-type: none;
+    margin:0;
+    padding: 20px 16px;
+    text-align:center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    scroll-behavior: smooth;
+}
+
+.nav li{
+    display:inline;
+    color: white;
+    text-align: center;
+    padding: 20px 60px;
+    scroll-behavior: smooth;
+}
+.nav a{
+    display:inline-block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+.btn {
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: large;
+}
+
+.btn-info {
+    background-color: rgb(57, 186, 255);
+    border-color:rgb(2, 117, 178);
+}
+
+.btn-form {
+    background-color: rgb(18, 190, 72);
+    border-color: rgb(1, 126, 41);
+}
+
+h1 {
+    align-items: center;
+    font-size: 4.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    text-transform: capitalize;
+    font-size: 2em;
+}
+
+.accueil {
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.home {
+    margin-left: 50px;
+}
+
+.discover {
+    text-align: center;
+}
+
+.content {
+    margin-left: 20px;
+}
+
+.game {
+    text-align: center;
+    align-items: center;
+}
+
+.label-form {
+    font-size: large;
+}
+
+input {
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    height: 25px;
+    
+}
+
+input[type=date] {
+    height: 25px;
+    box-sizing: border-box;
+}
+
+input[type=number]{
+    height: 25px;
+}
+
+input[type=checkbox] {
+    box-sizing: border-box;
+}
+
+.more {
+    font-style: italic;
+    font-size: small;
+}
+
+table {
+    margin: auto;
+    border-color: black;
+    border-width: solid 20px;
+}
+
+tr {
+    border-color: black;
+    border-width: 100px;
+}
+
+td {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(0, 89, 255);
+    text-align: center;
+    font-weight: bolder;
+}
+
+.btn-motus {
+    background-color: gold;
+}

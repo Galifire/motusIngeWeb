@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="assets/style.css">
+    <title>Bienvenue à Bourg-Clocher</title>
+</head>
+
+<body>
+
+
+    <div class="accueil" id="accueil">
+        <ul class="nav">
+            <li class="nav"><a href="#accueil">Accueil</a></li>
+            <li class="nav"><a href="#discover">Découverte</a></li>
+            <li class="nav"><a href="#command">Voyage & Visite</a></li>
+            <li class="nav"><a href="#game">Le Grand Jeu</a></li>
+            <li class="nav"><img alt="logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Zelda_Logo.svg/2560px-Zelda_Logo.svg.png"
+                    width="100" /></li>
+        </ul>
+        <div class="home">
+            <br>
+            <h1>Accueil</h1>
+            <p>Bienvenue sur le site officiel du Bourg-Clocher, retrouvez ici la description de certains lieux de la
+                région,
+                ainsi qu'un formulaire de réservation si vous souhaitez prendre des vacances chez nous, nous serons
+                ravis de
+                vous accueillir !</p>
+        </div>
+    </div>
+    <br>
+    <div class="discover" id="discover">
+        <div class="content">
+            <h1>Découverte</h1>
+            <h2>Le village :</h2>
+            <p>Le village de Bourg Clocher est principalement constitué de quelques bâtiments en bois, y compris une
+                école,
+                une boutique, une auberge et une horlogerie. Il y a également une fontaine centrale, une cloche et un
+                moulin
+                à vent qui tournent
+                lentement dans la brise.</p>
+            <br>
+
+            <h2>Les habitants du Bourg</h2>
+            <p>Les habitants de Bourg Clocher sont chaleureux et accueillants,
+                mais ils sont également préoccupés par l'approche imminente de la fin du monde.
+                Ils se préparent pour un festival annuel, mais il y a une atmosphère de tristesse et de désespoir dans
+                le
+                village
+                car ils savent qu'il pourrait être leur dernier.</p>
+            <br>
+
+            <h2>La plaine de Termina</h2>
+            <p>Elle entoure Bourg Clocher et s'étend sur une vaste étendue de terrain. Il est parsemé d'arbres, de
+                collines
+                et de rivières.
+                Les joueurs peuvent y trouver des ennemis à combattre, des quêtes à accomplir et des secrets à
+                découvrir.
+                Le paysage de la plaine de Termina est magnifique et offre une ambiance paisible et relaxante pour les
+                joueurs qui explorent la
+                région.</p>
+            <br>
+        </div>
+    </div>
+    <br>
+
+    <div class="command" id="command">
+        <h1>Voyage à Termina</h1>
+
+        <form method="post">
+            <div class="content">
+                <div class="voyage">
+                    <label class="label-form">Date d'Arrivée : </label>
+                    <input type="date" required /><br>
+                    <label class="label-form">Date de Départ : </label>
+                    <input type="date" required /><br>
+                    <label class="label-form">Nombre d'Adultes (18 ans et plus) : </label>
+                    <input type="number" required /><br>
+                    <label class="label-form">Nombre d'Enfants (Entre 4 et 18 ans) : </label>
+                    <input type="number" required /><br>
+                    <label class="label-form">Nombre de Nourissons (Moins de 4 ans) : </label>
+                    <input type="number" required /><br>
+                </div><br>
+
+                <div class="activites">
+                    <label class="label-form">Seriez vous intéressés par une visite du marais ? </label>
+                    <input type="checkbox" />
+                    <div class="more">
+                        (Tous les mardis et jeudis à 11, 14 et 17h , par Koume et Kotake)
+                    </div>
+                    <label class="label-form">Seriez vous intéressés par le concert des Indigo'Go ? </label>
+                    <input type="checkbox" /><br>
+                    <div class="more">
+                        (Tous les vendredis soirs à partir de 20h au Théâtre de la Grande Baie !)
+                    </div>
+                </div><br>
+
+                <div class="personal">
+                    <label class="label-form">Nom : </label>
+                    <input type="text" required /><br>
+                    <label class="label-form">Prénom : </label>
+                    <input type="text" required /><br>
+                    <label class="label-form">Email : </label>
+                    <input type="text" required /><br>
+                    <label class="label-form">Adresse : </label>
+                    <input type="text" required /><br>
+                    <label class="label-form">Numéro de Téléphone : </label>
+                    <input type="text" required /><br>
+                </div><br>
+                <button type="submit" class="btn btn-form">Réserver</button>
+            </div>
+
+        </form>
+    </div>
+    <br>
+    <div class="game" id="game">
+        <h1>Le Grand Jeu</h1>
+        
+        <input type="text" id="motusInput"> <button type="submit" class="btn btn-motus" onclick="test()">Essayer</button>
+        <table id="motus">
+        </table>
+    </div>
+    <script src="assets/motus.js"></script>
+
+</body>
+
+</html>
