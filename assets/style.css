@@ -149,7 +149,8 @@ td {
     background-color: white;
     text-align: center;
     text-transform: uppercase;
-    height: 50px;
+    height: 100%;
+    width: 100%;
 }
 .guessCell:focus{
     background-color: grey;
