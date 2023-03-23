@@ -51,7 +51,7 @@ function startGame() {
 function areEmptyFields() {
     let empty = false
     for (let i = 2; i < 7; i++) {
-        if (document.getElementById(i).value == "") {
+        if (!guessedLetters.includes(i) && document.getElementById(i).value == "") {
             empty = true;
             break;
         }
@@ -128,7 +128,8 @@ function guess() {
                     nextcell.setAttribute('class', 'guessing');
                     generateInput(nextcell, i);
                 }
-                if (!focused && nextcell.firstChild == null) {
+                console.log(nextcell.firstChild)
+                if (!focused && nextcell.firstChild.nodeName != "#text" && nextcell.firstChild.tagName.toLowerCase() == "input") {
                     nextcell.firstChild.focus();
                     focused = true
                 }
