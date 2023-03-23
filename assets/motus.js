@@ -7,98 +7,7 @@ let dictionnaire = ["ABACAS", "ABAQUE", "ABASIE", "ABATEE", "ABATIS", "ABATTE", 
 let Nguess = 0;
 let randomWord;
 let guessedLetters = [0];
-
-function guess() {
-    if (Nguess < 5) {
-        let word = [randomWord[0]];
-        const firstLetter = document.getElementById(`cell${(Nguess * 7) + 8}`);
-        firstLetter.setAttribute('class', 'right');
-        firstLetter.innerHTML = word[0];
-        Nguess++;
-        for (let i = 2; i < 7; i++) {
-            if(document.getElementById(i)){
-                word.push(document.getElementById(i).value.toUpperCase());
-            }else{
-                word.push(randomWord[i]);
-            }
-            const cell = document.getElementById(`cell${(Nguess-1)*7+ i}`);
-            const nextcell = document.getElementById(`cell${Nguess * 7 + i}`);
-            if (guessedLetters.includes(i)) {
-                nextcell.setAttribute('class', 'right');
-                nextcell.innerHTML = randomWord[i - 1];
-            } else if (word[i - 1] === randomWord[i - 1]) {
-                cell.setAttribute('class', 'right');
-                cell.innerHTML = word[i - 1];
-                nextcell.setAttribute('class', 'right');
-                nextcell.innerHTML = randomWord[i - 1];
-                guessedLetters.push(i);
-            } else if (randomWord.includes(word[i - 1])) {
-                cell.setAttribute('class', 'wrongPlace');
-                cell.innerHTML = word[i - 1];
-                nextcell.setAttribute('class', 'guessing');
-                generateInput(nextcell, i);
-            } else {
-                cell.setAttribute('class', 'false');
-                cell.innerHTML = word[i - 1];
-                nextcell.setAttribute('class', 'guessing');
-                generateInput(nextcell, i);
-            }
-        }
-        document.getElementById(`cell${Nguess * 7}`).innerHTML = "";
-        if(guessedLetters.length == 6){
-            alert("Gangé");
-        }else{
-            const confirm = document.getElementById(`cell${(Nguess + 1) * 7}`);
-            const confirmButton = document.createElement('button');
-            confirmButton.setAttribute("type", "submit");
-            confirmButton.setAttribute("class", "btn btn-motus");
-            confirmButton.setAttribute("onclick", "guess()");
-            confirm.setAttribute("class", 'send');
-            confirm.appendChild(confirmButton);
-        }
-    }else if(Nguess == 5){
-        for (let i = 2; i < 7; i++) {
-            let word = [randomWord[0]];
-            if(document.getElementById(i)){
-                word.push(document.getElementById(i).value.toUpperCase());
-            }else{
-                word.push(randomWord[i]);
-            }
-            const cell = document.getElementById(`cell${Nguess*7+ i}`);
-            if (guessedLetters.includes(i)) {
-                nextcell.setAttribute('class', 'right');
-                nextcell.innerHTML = randomWord[i - 1];
-            } else if (word[i - 1] === randomWord[i - 1]) {
-                cell.setAttribute('class', 'right');
-                cell.innerHTML = word[i - 1];
-            } else if (randomWord.includes(word[i - 1])) {
-                cell.setAttribute('class', 'wrongPlace');
-                cell.innerHTML = word[i - 1];
-            } else {
-                cell.setAttribute('class', 'false');
-                cell.innerHTML = word[i - 1];
-            }
-        }
-        if(guessedLetters.length == 6){
-            alert("Gangé");
-            document.getElementById(`cell${Nguess * 7}`).innerHTML = "";
-        }else{
-            alert("Le bon mot était : " + randomWord);
-        }
-    }else{
-        alert("T'es nul, t'a perdu sur  ce mot")
-    }
-}
-
-function generateInput(cell, number) {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'text');
-    input.setAttribute('maxlength', '1');
-    input.setAttribute('name', 'guessCell');
-    input.setAttribute('required', '');
-    input.setAttribute('id', number);
-    cell.appendChild(input);
-}
+let alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 function startGame() {
     randomWord = dictionnaire[Math.floor(Math.random() * dictionnaire.length)];
@@ -108,6 +17,7 @@ function startGame() {
     let count = 1
     for (let i = 0; i < 6; i++) {
         const row = document.createElement('tr');
+        row.setAttribute("id", ("line" + i));
 
         for (let j = 0; j < 7; j++) {
             const col = document.createElement('td');
@@ -128,6 +38,8 @@ function startGame() {
                     col.setAttribute("class", 'guessing');
                     generateInput(col, count);
                 }
+            } else if (j == 6) {
+                col.setAttribute("class", 'send');
             }
             row.appendChild(col);
             count++;
@@ -136,28 +48,146 @@ function startGame() {
     }
     table.appendChild(tBody);
 }
-
-function test() {
-    let mot = document.querySelector('#motusInput').value;
-    mot = mot.toUpperCase();
-    console.log(mot);
-    console.log("Guess number " + guess);
-    if (mot.length != 6) {
-        alert("Votre mot doit faire 6 caractères");
-    } else if (!(dictionnaire.includes(mot))) {
-        alert("Le mot n'est pas dans le dictionnaire")
-    } else {
-        guess++;
-        let chars = mot.split('');
-        for (let i = 0; i < 6; i++) {
-            let emplacement = (6 * (guess - 1) + (i + 1));
-            let gridCase = document.getElementById(emplacement.toString());
-            let txt = document.createTextNode(chars[i]);
-            console.log(chars[i])
-            gridCase.appendChild(txt);
+function areEmptyFields() {
+    let empty = false
+    for (let i = 2; i < 7; i++) {
+        if (document.getElementById(i).value == "") {
+            empty = true;
+            break;
         }
     }
-    document.getElementById("motusInput").innerText = '';
+    return empty
 }
 
 startGame();
+
+function moveCursor(e) {
+    var target = e.srcElement || e.target;
+    if (e.key == "Enter") {
+        guess();
+    } else if (target.value.length == 0 && e.key == "Backspace") {
+        let actual = parseInt(target.getAttribute("id"), 10);
+        if (actual < 7 && actual > 2) {
+            for (let i = actual - 1; i >= 0; i--) {
+                if (document.getElementById(i) != null) {
+                    document.getElementById(i).focus();
+                    break;
+                }
+            }
+        }
+    } else if (target.value.length >= 1 && alphabet.includes(e.key)) {
+        target.value = e.key.toUpperCase();
+        let actual = parseInt(target.getAttribute("id"), 10);
+        if (actual < 6 && actual > 1) {
+            for (let i = actual + 1; i <= 6; i++) {
+                if (document.getElementById(i) != null) {
+                    document.getElementById(i).focus();
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function guess() {
+    if (areEmptyFields()) {
+        alert('Remplissez tous les champs');
+    } else {
+        let focused = false;
+        if (Nguess < 5) {
+            let word = [randomWord[0]];
+            const firstLetter = document.getElementById(`cell${(Nguess * 7) + 8}`);
+            firstLetter.setAttribute('class', 'right');
+            firstLetter.innerHTML = word[0];
+            Nguess++;
+            for (let i = 2; i < 7; i++) {
+                if (document.getElementById(i)) {
+                    word.push(document.getElementById(i).value.toUpperCase());
+                } else {
+                    word.push(randomWord[i]);
+                }
+                const cell = document.getElementById(`cell${(Nguess - 1) * 7 + i}`);
+                const nextcell = document.getElementById(`cell${Nguess * 7 + i}`);
+                if (guessedLetters.includes(i)) {
+                    nextcell.setAttribute('class', 'right');
+                    nextcell.innerHTML = randomWord[i - 1];
+                } else if (word[i - 1] === randomWord[i - 1]) {
+                    cell.setAttribute('class', 'right');
+                    cell.innerHTML = word[i - 1];
+                    nextcell.setAttribute('class', 'right');
+                    nextcell.innerHTML = randomWord[i - 1];
+                    guessedLetters.push(i);
+                } else if (randomWord.includes(word[i - 1])) {
+                    cell.setAttribute('class', 'wrongPlace');
+                    cell.innerHTML = word[i - 1];
+                    nextcell.setAttribute('class', 'guessing');
+                    generateInput(nextcell, i);
+                } else {
+                    cell.setAttribute('class', 'false');
+                    cell.innerHTML = word[i - 1];
+                    nextcell.setAttribute('class', 'guessing');
+                    generateInput(nextcell, i);
+                }
+                if (!focused && nextcell.firstChild == null) {
+                    nextcell.firstChild.focus();
+                    focused = true
+                }
+            }
+            document.getElementById(`cell${Nguess * 7}`).innerHTML = "";
+            if (guessedLetters.length == 6) {
+                alert("Gangé");
+            } else {
+                const confirm = document.getElementById(`cell${(Nguess + 1) * 7}`);
+                const confirmButton = document.createElement('button');
+                confirmButton.setAttribute("type", "submit");
+                confirmButton.setAttribute("class", "btn btn-motus");
+                confirmButton.setAttribute("onclick", "guess()");
+                confirm.setAttribute("class", 'send');
+                confirm.appendChild(confirmButton);
+            }
+        } else if (Nguess == 5) {
+            for (let i = 2; i < 7; i++) {
+                let word = [randomWord[0]];
+                if (document.getElementById(i)) {
+                    word.push(document.getElementById(i).value.toUpperCase());
+                } else {
+                    word.push(randomWord[i]);
+                }
+                const cell = document.getElementById(`cell${Nguess * 7 + i}`);
+                if (guessedLetters.includes(i)) {
+                    nextcell.setAttribute('class', 'right');
+                    nextcell.innerHTML = randomWord[i - 1];
+                } else if (word[i - 1] === randomWord[i - 1]) {
+                    cell.setAttribute('class', 'right');
+                    cell.innerHTML = word[i - 1];
+                } else if (randomWord.includes(word[i - 1])) {
+                    cell.setAttribute('class', 'wrongPlace');
+                    cell.innerHTML = word[i - 1];
+                } else {
+                    cell.setAttribute('class', 'false');
+                    cell.innerHTML = word[i - 1];
+                }
+            }
+            if (guessedLetters.length == 6) {
+                alert("Gangé");
+                document.getElementById(`cell${Nguess * 7}`).innerHTML = "";
+            } else {
+                alert("Le bon mot était : " + randomWord);
+            }
+        } else {
+            alert("T'es nul, t'a perdu sur  ce mot")
+        }
+    }
+}
+
+function generateInput(cell, number) {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('maxlength', '1');
+    input.setAttribute('name', 'guessCell');
+    input.setAttribute('class', 'guessCell');
+    input.setAttribute('onkeyup', 'moveCursor(event)');
+    input.setAttribute('required', '');
+    input.setAttribute('id', number);
+    cell.appendChild(input);
+}
