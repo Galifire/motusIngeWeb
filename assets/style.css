@@ -106,7 +106,6 @@ input {
 
 input[type=text] {
     height: 25px;
-    
 }
 
 input[type=date] {
@@ -144,6 +143,29 @@ td {
     background-color: rgb(0, 89, 255);
     text-align: center;
     font-weight: bolder;
+}
+
+.guessCell{
+    background-color: red;
+    width: 52px;
+    height: 52px;
+}
+
+.right{
+    background-color: red;
+}
+
+.wrongPlace{
+    background-color: yellow;
+    border-radius: 15%;
+}
+
+.false{
+    background-color: grey;
+}
+
+.send{
+    background-color: transparent;
 }
 
 .btn-motus {
