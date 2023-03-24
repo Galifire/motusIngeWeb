@@ -12,6 +12,18 @@ body {
     color: rgb(230, 230, 230);
 }
 
+h1 {
+    align-items: center;
+    font-size: 4.6em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    text-transform: capitalize;
+    font-size: 2em;
+}
+
 .nav{
     border-width:1px 0;
     list-style:none;
@@ -31,6 +43,7 @@ body {
     padding: 20px 60px;
     scroll-behavior: smooth;
 }
+
 .nav a{
     display:inline-block;
     padding: 10px;
@@ -56,18 +69,6 @@ body {
 .btn-form {
     background-color: rgb(18, 190, 72);
     border-color: rgb(1, 126, 41);
-}
-
-h1 {
-    align-items: center;
-    font-size: 4.6em;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-h2 {
-    text-transform: capitalize;
-    font-size: 2em;
 }
 
 .accueil {
@@ -126,18 +127,18 @@ input[type=checkbox] {
     font-size: small;
 }
 
-table {
+#motus {
     margin: auto;
     border-color: black;
     border-width: solid 20px;
 }
 
-tr {
+tr.motus{
     border-color: black;
     border-width: 100px;
 }
 
-td {
+td.motus{
     height: 50px;
     width: 50px;
     background-color: rgb(0, 89, 255);
@@ -149,11 +150,15 @@ td {
     background-color: white;
     text-align: center;
     text-transform: uppercase;
-    height: 100%;
-    width: 100%;
+    height: 50px;
+    width: 50px;
 }
-.guessCell:focus{
+.focusedGuessCell{
     background-color: grey;
+    text-align: center;
+    text-transform: uppercase;
+    height: 50px;
+    width: 50px;
 }
 
 .right{
@@ -162,7 +167,7 @@ td {
 
 .wrongPlace{
     background-color: yellow;
-    border-radius: 15%;
+    border-radius: 55%;
 }
 
 .false{
@@ -173,10 +178,19 @@ td {
     background-color: transparent;
 }
 
+.won{
+    background-color: green;
+}
+
+.lose{
+    background-color: black;
+}
+
 .guessing{
-    background-color: transparent;
-    padding: 0%;
-    margin: 0%;
+    background-color: white;
+}
+.guessing:focus{
+    background-color: grey;
 }
 
 .btn-motus {
