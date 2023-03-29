@@ -163,15 +163,21 @@ td.motus{
 
 .right{
     background-color: red;
+    height: 50px;
+    width: 50px;
 }
 
 .wrongPlace{
     background-color: yellow;
+    height: 50px;
+    width: 50px;
     border-radius: 55%;
 }
 
 .false{
     background-color: grey;
+    height: 50px;
+    width: 50px;
 }
 
 .send{
@@ -180,10 +186,14 @@ td.motus{
 
 .won{
     background-color: green;
+    height: 50px;
+    width: 50px;
 }
 
 .lose{
     background-color: black;
+    height: 50px;
+    width: 50px;
 }
 
 .guessing{
