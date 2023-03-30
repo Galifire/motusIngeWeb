@@ -153,13 +153,6 @@ td.motus{
     height: 50px;
     width: 50px;
 }
-.focusedGuessCell{
-    background-color: grey;
-    text-align: center;
-    text-transform: uppercase;
-    height: 50px;
-    width: 50px;
-}
 
 .right{
     background-color: red;
@@ -191,7 +184,7 @@ td.motus{
 }
 
 .lose{
-    background-color: black;
+    background-color: red;
     height: 50px;
     width: 50px;
 }
@@ -199,10 +192,16 @@ td.motus{
 .guessing{
     background-color: white;
 }
-.guessing:focus{
+.focusedGuessCell{
     background-color: grey;
+    text-align: center;
+    text-transform: uppercase;
+    height: 50px;
+    width: 50px;
 }
 
 .btn-motus {
+    width: 50px;
+    height: 50px;
     background-color: gold;
 }
