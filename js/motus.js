@@ -32,7 +32,7 @@ let currentFocusedCell;
 function startGame() {
     //console.log(localStorage)
     Nguess = 0;
-    localStorage.clear();
+    //localStorage.clear();
     generateRandomWord();
     generateGameTable();
     generateHistoryTable();
@@ -100,12 +100,8 @@ function generateGameCells(row, i) {
                 col.innerHTML = randomWord[0];
                 col.setAttribute("class", 'right');
             } else if (j == randomWord.length) {
-                const confirmButton = document.createElement('button');
-                confirmButton.setAttribute("type", "submit");
-                confirmButton.setAttribute("class", "btn btn-motus");
-                confirmButton.addEventListener('click', guess);
                 col.setAttribute("class", 'send');
-                col.appendChild(confirmButton);
+                generateConfirmButton(col);
             } else {
                 col.setAttribute("class", 'guessing');
             }
@@ -117,6 +113,23 @@ function generateGameCells(row, i) {
 }
 
 /**
+ * Génère le bouton de validation
+ * @param {cell} cell Case du tableau de jeu
+ */
+function generateConfirmButton(cell) {
+    const confirmButton = document.createElement('button');
+    confirmButton.setAttribute("type", "submit");
+    confirmButton.setAttribute("class", "btn btn-motus");
+    confirmButton.addEventListener('click', guess);
+
+    const confirmIcon = document.createElement('img');
+    confirmIcon.setAttribute("src", "../assets/sendButton.svg");
+    confirmIcon.setAttribute("alt", "envoyer");
+    confirmButton.appendChild(confirmIcon);
+    cell.appendChild(confirmButton);
+}
+
+/**
  * Teste si les cases sont vides, et si non, vérifie le mot donné par l'utilisateur
  */
 function guess() {
@@ -124,7 +137,6 @@ function guess() {
         alert('Remplissez tous les champs');
     } else {
         const word = getUserWord();
-        console.log(word)
 
         if (dictionary_list[randomWord.length - 5].includes(word)) {
             document.getElementById(`cell${Nguess + "-" + randomWord.length}`).innerHTML = "";
@@ -204,12 +216,8 @@ function generateNextLine(word) {
         }
     }
     const confirm = document.getElementById(`cell${Nguess + "-" + randomWord.length}`);
-    const confirmButton = document.createElement('button');
-    confirmButton.setAttribute("type", "submit");
-    confirmButton.setAttribute("class", "btn btn-motus");
-    confirmButton.addEventListener('click', guess);
     confirm.setAttribute("class", 'send');
-    confirm.appendChild(confirmButton);
+    generateConfirmButton(confirm);
 }
 
 /**
@@ -253,6 +261,7 @@ function askForNewGame() {
         const replay = document.createElement('button');
         replay.setAttribute("type", "submit");
         replay.setAttribute("class", "replay");
+        replay.innerHTML = "Rejouer";
         replay.addEventListener('click', startGame);
         document.getElementById('motus').appendChild(replay);
     }

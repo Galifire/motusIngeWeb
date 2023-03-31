@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 50px;
@@ -13,6 +18,7 @@ body {
 }
 
 h1 {
+    text-align: center;
     align-items: center;
     font-size: 4.6em;
     text-transform: uppercase;
@@ -128,7 +134,9 @@ input[type=checkbox] {
 }
 
 #motus {
-    margin: auto;
+    display: inline-flex;
+    position: relative;
+    left: 15px;
     border-color: black;
     border-width: solid 20px;
 }
@@ -161,7 +169,7 @@ td.motus{
 }
 
 .wrongPlace{
-    background-color: yellow;
+    background-color: gold;
     height: 50px;
     width: 50px;
     border-radius: 55%;
@@ -200,8 +208,27 @@ td.motus{
     width: 50px;
 }
 
+.replay{
+    background-color: lightgreen;
+    text-align: center;
+    border-radius: 30%;
+    width: 75px;
+    height: 50px;
+}
+
 .btn-motus {
+    background-color: lightGreen;
     width: 50px;
     height: 50px;
-    background-color: gold;
+}
+.btn-motus:hover {
+    background-color: green;
+}
+
+#historique {
+    display: inline-flex;
+    position: absolute;
+    left: 5%;
+    text-align: center;
+    width: 25%;
 }
