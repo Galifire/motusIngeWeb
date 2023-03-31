@@ -30,9 +30,9 @@ let currentFocusedCell;
  * Génère le mot, le tableau et l'historique
  */
 function startGame() {
-    console.log(localStorage)
+    //console.log(localStorage)
     Nguess = 0;
-    //localStorage.clear();
+    localStorage.clear();
     generateRandomWord();
     generateGameTable();
     generateHistoryTable();
@@ -45,8 +45,9 @@ function generateRandomWord() {
     let randomDictionnary = dictionary_list[Math.floor(Math.random() * 5)];
     randomWord = randomDictionnary[Math.floor(Math.random() * randomDictionnary.length)];
     while (!randomWord) {
-        randomWord = randomDictionary[Math.floor(Math.random() * randomDictionary.length)];
+        randomWord = randomDictionnary[Math.floor(Math.random() * randomDictionnary.length)];
     }
+    guessedWord.clear();
     guessedWord.set(0, true);
     for (let i = 1; i < randomWord.length; i++) {
         guessedWord.set(i, false);
@@ -58,6 +59,7 @@ function generateRandomWord() {
  */
 function generateGameTable() {
     let table = document.getElementById("motus");
+    table.innerHTML = "";
     let tHead = document.createElement("thead");
     let tr = document.createElement("tr");
     let th = document.createElement("th");
@@ -117,14 +119,14 @@ function generateGameCells(row, i) {
 /**
  * Teste si les cases sont vides, et si non, vérifie le mot donné par l'utilisateur
  */
-
 function guess() {
     if (areEmptyFields()) {
         alert('Remplissez tous les champs');
     } else {
         const word = getUserWord();
+        console.log(word)
 
-        if (dictionary_list[randomWord.length-5].includes(word)) {
+        if (dictionary_list[randomWord.length - 5].includes(word)) {
             document.getElementById(`cell${Nguess + "-" + randomWord.length}`).innerHTML = "";
             if (word == randomWord) {
                 endGame(word, true);
@@ -134,6 +136,7 @@ function guess() {
                 Nguess++;
                 generateNextLine(word);
             }
+            setFocusedCellBG();
         } else {
             alert("Le mot n'est pas dans le dictionnaire");
         }
@@ -149,6 +152,7 @@ function areEmptyFields() {
     for (let [key, value] of guessedWord) {
         if (!value && document.getElementById(`cell${Nguess + "-" + key}`).innerHTML == "") {
             empty = true;
+            break;
         }
     }
     return empty
@@ -203,7 +207,7 @@ function generateNextLine(word) {
     const confirmButton = document.createElement('button');
     confirmButton.setAttribute("type", "submit");
     confirmButton.setAttribute("class", "btn btn-motus");
-    confirmButton.addEventListener('click', guess);
+    confirmButton.setAttribute("onclick", "guess()");
     confirm.setAttribute("class", 'send');
     confirm.appendChild(confirmButton);
 }
@@ -215,22 +219,22 @@ function generateNextLine(word) {
  */
 function endGame(word, win) {
     if (win) {
-        // for (let i = 0; i < randomWord.length; i++) {
-        //     const cell = document.getElementById(`cell${Nguess + "-" + i}`);
-        //     cell.setAttribute('class', 'won');
-        //     cell.innerHTML = randomWord[i];
-        // }
+        for (let i = 0; i < randomWord.length; i++) {
+            const cell = document.getElementById(`cell${Nguess + "-" + i}`);
+            cell.setAttribute('class', 'won');
+            cell.innerHTML = randomWord[i];
+        }
         setHistory(word, true);
     } else {
-        // for (let [key, value] of guessedWord) {
-        //     const cell = document.getElementById(`cell${Nguess + "-" + key}`);
-        //     if (value) {
-        //         cell.setAttribute('class', 'right');
-        //     } else {
-        //         cell.setAttribute('class', 'false');
-        //     }
-        //     cell.innerHTML = randomWord[key];
-        // }
+        for (let [key, value] of guessedWord) {
+            const cell = document.getElementById(`cell${Nguess + "-" + key}`);
+            if (value) {
+                cell.setAttribute('class', 'right');
+            } else {
+                cell.setAttribute('class', 'false');
+            }
+            cell.innerHTML = randomWord[key];
+        }
         setHistory(word, false);
     }
     askForNewGame();
@@ -244,6 +248,7 @@ function askForNewGame() {
         document.getElementById('motus').innerHTML = "";
         startGame();
     } else {
+        currentFocusedCell = null;
         document.getElementById('motus').innerHTML = "";
         const replay = document.createElement('button');
         replay.setAttribute("type", "submit");
@@ -263,11 +268,13 @@ function askForNewGame() {
  * @param {int} oldCell Ancienne cellule sur laquelle le curseur était
  */
 function setFocusedCellBG(oldFocusedCell) {
-    const currentCell = document.getElementById(`cell${Nguess + "-" + currentFocusedCell}`);
-    currentCell.setAttribute('class', 'focusedGuessCell');
-    if(oldFocusedCell != null){
-        const oldCell = document.getElementById(`cell${Nguess + "-" + oldFocusedCell}`);
-        oldCell.setAttribute('class', 'guessing');
+    if (currentFocusedCell != null) {
+        const currentCell = document.getElementById(`cell${Nguess + "-" + currentFocusedCell}`);
+        currentCell.setAttribute('class', 'focusedGuessCell');
+        if (oldFocusedCell != null) {
+            const oldCell = document.getElementById(`cell${Nguess + "-" + oldFocusedCell}`);
+            oldCell.setAttribute('class', 'guessing');
+        }
     }
 }
 
