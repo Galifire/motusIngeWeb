@@ -103,7 +103,7 @@ function generateGameCells(row, i) {
                 const confirmButton = document.createElement('button');
                 confirmButton.setAttribute("type", "submit");
                 confirmButton.setAttribute("class", "btn btn-motus");
-                confirmButton.setAttribute("onclick", "guess()");
+                confirmButton.addEventListener('click', guess);
                 col.setAttribute("class", 'send');
                 col.appendChild(confirmButton);
             } else {
@@ -207,7 +207,7 @@ function generateNextLine(word) {
     const confirmButton = document.createElement('button');
     confirmButton.setAttribute("type", "submit");
     confirmButton.setAttribute("class", "btn btn-motus");
-    confirmButton.setAttribute("onclick", "guess()");
+    confirmButton.addEventListener('click', guess);
     confirm.setAttribute("class", 'send');
     confirm.appendChild(confirmButton);
 }

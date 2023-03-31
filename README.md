@@ -59,7 +59,7 @@ localStorage: {
 ```
 
 ## 5. Bug connus
-- [ ] bouton guess not found
+- [x] bouton guess not found
 - [x] replay doubles grilles
 - [ ] changer couleurs fin de partie
 - [x] virer bouton replay quand cliqué
