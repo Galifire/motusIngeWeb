@@ -264,6 +264,7 @@ function askForNewGame() {
         replay.innerHTML = "Rejouer";
         replay.addEventListener('click', startGame);
         document.getElementById('motus').appendChild(replay);
+        generateHistoryTable();
     }
 }
 

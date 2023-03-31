@@ -23,7 +23,7 @@ Vous y retrouverez également plusieurs informations sur les différents lieux d
 
 - Choix aléatoire du mot parmi les dictionnaires de 5 à 10 lettres
 - Génération dynamique du tableau en fonction du nombre de lettres du mot
-- Affichage de la 1er lettre et des lettres valides à chaque tour
+- Affichage de la 1ère lettre et des lettres valides à chaque tour
 - Bouton de validation à la fin de chaque ligne (en fonction de celle qui est "utilisée")
 - Coloration des cases en fonction de la validité des lettres au moment de la vérification
 - Affichage & saisie des lettres dans le tableau sans inputs
@@ -57,10 +57,3 @@ localStorage: {
     }
 }
 ```
-
-## 5. Bug connus
-- [x] bouton guess not found
-- [x] replay doubles grilles
-- [ ] changer couleurs fin de partie
-- [x] virer bouton replay quand cliqué
-- [x] Bug au bout de 4(?) parties
